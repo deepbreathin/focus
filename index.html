@@ -16,8 +16,8 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
     background-size: 400% 400%;
-    animation: gradientShift 18s ease infinite;
-    color: #fff;
+    animation: gradientShift 45s ease infinite;
+    color: #e8e6f0;
     overflow: hidden;
   }
   @keyframes gradientShift {
@@ -88,7 +88,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: rainbowShift 8s linear infinite;
+    animation: rainbowShift 30s linear infinite;
     display: inline-block;
   }
   @keyframes rainbowShift {
@@ -100,14 +100,6 @@
     text-decoration-thickness: 0.12em;
     text-underline-offset: 0.12em;
     text-decoration-color: #ffea00;
-  }
-  .smile {
-    display: inline-block;
-    animation: bounce 1.6s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-10px); }
   }
   .sub {
     font-size: clamp(0.8rem, 1.4vw, 1.1rem);
@@ -168,13 +160,12 @@
       <span class="rainbow"><span id="daysInline">--</span> DAYS OF PERFECT ENVIRONMENT FOR FOCUS,</span><br>
       <span class="rainbow">AWAY FROM MANY COMMITMENTS.</span><br>
       <span class="rainbow">IS THIS HOW I WANT TO WASTE THIS <u>PRIME OPPORTUNITY</u>?</span>
-      <span class="smile">:D</span>
     </h1>
 
     <div class="prompt">
       You are currently choosing whether day <span id="dayIndex">--</span> of <span id="dayTotal">--</span> is one you <em>executed</em> on, or one you let slip.<br>
       <span class="now">CHOOSE AGAIN.</span><br>
-      Go back to the high-value task. Or, if you're genuinely cooked, read the Kindle — <em>not</em> the feed.
+      Go back to the high-value task. Or, if you're genuinely having a break, set a 30-min timer and read the Kindle — <em>not</em> the feed.
     </div>
 
     <div class="target-date">Window closes: 16 July 2026</div>
