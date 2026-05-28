@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Return to the UK — Countdown</title>
+<style>
+  :root {
+    --bg-1: #0f0c29;
+    --bg-2: #302b63;
+    --bg-3: #24243e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+    color: #fff;
+    overflow: hidden;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .wrap {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 3vw;
+    text-align: center;
+    gap: 1.5vh;
+  }
+  .label {
+    font-size: clamp(0.7rem, 1.6vw, 1.1rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .countdown {
+    display: flex;
+    gap: clamp(0.4rem, 1.4vw, 1.2rem);
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  .unit {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: clamp(0.5rem, 1.2vh, 1rem) clamp(0.6rem, 2vw, 1.4rem);
+    min-width: clamp(60px, 11vw, 130px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  .unit .num {
+    font-size: clamp(1.6rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    background: linear-gradient(90deg, #ff8a00, #ffea00, #00f5a0, #00d9f5, #c471f5, #fa71cd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .unit .lbl {
+    font-size: clamp(0.55rem, 1vw, 0.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.75;
+    margin-top: 0.3rem;
+  }
+  .hero {
+    font-weight: 900;
+    font-size: clamp(1.2rem, 4.2vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 1200px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+  }
+  .hero .rainbow {
+    background: linear-gradient(90deg,
+      #ff004c, #ff8a00, #ffea00, #00f5a0, #00d9f5, #5e6cff, #c471f5, #fa71cd);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowShift 8s linear infinite;
+    display: inline-block;
+  }
+  @keyframes rainbowShift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  .hero u {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.12em;
+    text-decoration-color: #ffea00;
+  }
+  .smile {
+    display: inline-block;
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  .sub {
+    font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+    opacity: 0.85;
+    max-width: 800px;
+    font-style: italic;
+  }
+  .prompt {
+    font-size: clamp(0.85rem, 1.7vw, 1.35rem);
+    max-width: 900px;
+    line-height: 1.4;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: clamp(0.7rem, 1.5vh, 1.2rem) clamp(0.9rem, 2vw, 1.6rem);
+    backdrop-filter: blur(8px);
+  }
+  .prompt .now {
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #ffea00;
+    text-shadow: 0 0 20px rgba(255, 234, 0, 0.6);
+  }
+  .prompt em {
+    color: #fa71cd;
+    font-style: italic;
+    font-weight: 600;
+  }
+  .target-date {
+    font-size: clamp(0.7rem, 1.2vw, 1rem);
+    opacity: 0.7;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  /* Portrait phones — stack tighter, shrink hero more */
+  @media (max-width: 600px) and (orientation: portrait) {
+    .hero { font-size: clamp(1.1rem, 5.2vw, 2rem); }
+    .prompt { font-size: clamp(0.8rem, 3.4vw, 1.1rem); }
+    .unit { padding: 0.5rem 0.6rem; min-width: 58px; border-radius: 10px; }
+    .unit .num { font-size: clamp(1.3rem, 6.5vw, 2rem); }
+    .countdown { gap: 0.4rem; }
+    .wrap { gap: 1.2vh; padding: 2vh 2vw; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="label">Time remaining</div>
+
+    <div class="countdown" id="countdown">
+      <div class="unit"><div class="num" id="days">--</div><div class="lbl">Days</div></div>
+      <div class="unit"><div class="num" id="hours">--</div><div class="lbl">Hours</div></div>
+      <div class="unit"><div class="num" id="minutes">--</div><div class="lbl">Minutes</div></div>
+      <div class="unit"><div class="num" id="seconds">--</div><div class="lbl">Seconds</div></div>
+    </div>
+
+    <h1 class="hero">
+      <span class="rainbow"><span id="daysInline">--</span> DAYS OF PERFECT ENVIRONMENT FOR FOCUS,</span><br>
+      <span class="rainbow">AWAY FROM MANY COMMITMENTS.</span><br>
+      <span class="rainbow">IS THIS HOW I WANT TO WASTE THIS <u>PRIME OPPORTUNITY</u>?</span>
+      <span class="smile">:D</span>
+    </h1>
+
+    <div class="prompt">
+      You are currently choosing whether day <span id="dayIndex">--</span> of <span id="dayTotal">--</span> is one you <em>executed</em> on, or one you let slip.<br>
+      <span class="now">CHOOSE AGAIN.</span><br>
+      Go back to the high-value task. Or, if you're genuinely cooked, read the Kindle — <em>not</em> the feed.
+    </div>
+
+    <div class="target-date">Window closes: 16 July 2026</div>
+  </div>
+
+<script>
+  const target = new Date('2026-07-16T00:00:00').getTime();
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, '0');
+
+  function tick() {
+    const now = Date.now();
+    let diff = Math.max(0, target - now);
+    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+    const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+    const mins = Math.floor(diff / 60000); diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    $('days').textContent = days;
+    $('hours').textContent = pad(hours);
+    $('minutes').textContent = pad(mins);
+    $('seconds').textContent = pad(secs);
+    const inline = document.getElementById('daysInline');
+    if (inline) inline.textContent = days;
+
+    // Day index out of fixed 50-day window
+    const totalDays = 50;
+    const dayIdx = Math.min(totalDays, Math.max(1, totalDays - days));
+    const di = document.getElementById('dayIndex');
+    const dt = document.getElementById('dayTotal');
+    if (di) di.textContent = dayIdx;
+    if (dt) dt.textContent = totalDays;
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
