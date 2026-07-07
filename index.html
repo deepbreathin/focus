@@ -14,11 +14,26 @@
   html, body {
     height: 100%;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #e8e6f0;
+    overflow: hidden;
+  }
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
     background-size: 400% 400%;
     animation: gradientShift 45s ease infinite;
-    color: #e8e6f0;
-    overflow: hidden;
+    opacity: 0.6;
   }
   @keyframes gradientShift {
     0%   { background-position: 0% 50%; }
@@ -146,6 +161,8 @@
 </style>
 </head>
 <body>
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
   <div class="wrap">
     <div class="label">Time remaining</div>
 
@@ -157,15 +174,15 @@
     </div>
 
     <h1 class="hero">
-      <span class="rainbow"><span id="daysInline">--</span> DAYS OF PERFECT ENVIRONMENT FOR FOCUS,</span><br>
-      <span class="rainbow">AWAY FROM MANY COMMITMENTS.</span><br>
-      <span class="rainbow">IS THIS HOW I WANT TO WASTE THIS <u>PRIME OPPORTUNITY</u>?</span>
+      <span class="rainbow"><span id="daysInline">--</span> DAYS OF OPEN SPACE TO BREATHE,</span><br>
+      <span class="rainbow">FEWER COMMITMENTS PULLING AT ME.</span><br>
+      <span class="rainbow">A <u>PRIME OPPORTUNITY</u> TO ENJOY IT — AND TO GROW.</span>
     </h1>
 
     <div class="prompt">
-      You are currently choosing whether day <span id="dayIndex">--</span> of <span id="dayTotal">--</span> is one you <em>executed</em> on, or one you let slip.<br>
-      <span class="now">CHOOSE AGAIN.</span><br>
-      Go back to the high-value task. Or, if you're genuinely having a break, set a 30-min timer and read the Kindle — <em>not</em> the feed.
+      You're on day <span id="dayIndex">--</span> of <span id="dayTotal">--</span>. However the rest have gone, this one is brand new.<br>
+      <span class="now">SAVOR IT. SHAPE IT.</span><br>
+      Take in what's around you, then spend a little of it moving <em>one thing</em> forward — even something small counts. Either way, you're doing this right.
     </div>
 
     <div class="target-date">Window closes: 16 July 2026</div>
