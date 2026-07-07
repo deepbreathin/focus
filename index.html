@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Return to the UK — Countdown</title>
+<title>Days like water</title>
 <style>
   :root {
-    --bg-1: #0f0c29;
-    --bg-2: #302b63;
-    --bg-3: #24243e;
+    --ink: #2a1f14;
+    --cream: #f6ecd9;
+    --gold: #e3b975;
+    --gold-soft: rgba(227, 185, 117, 0.35);
+    --panel: rgba(38, 28, 18, 0.38);
+    --panel-border: rgba(246, 236, 217, 0.16);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
     height: 100%;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #e8e6f0;
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+    color: var(--cream);
     overflow: hidden;
   }
   .bg-photo {
@@ -23,22 +26,15 @@
     z-index: -2;
     background-image: url('background.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center 30%;
     background-repeat: no-repeat;
   }
   .bg-overlay {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
-    background-size: 400% 400%;
-    animation: gradientShift 45s ease infinite;
-    opacity: 0.6;
-  }
-  @keyframes gradientShift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background:
+      linear-gradient(180deg, rgba(20,14,8,0.35) 0%, rgba(20,14,8,0.55) 55%, rgba(12,8,5,0.78) 100%);
   }
   .wrap {
     height: 100dvh;
@@ -46,117 +42,104 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2vh 3vw;
+    padding: 3vh 3vw;
     text-align: center;
-    gap: 1.5vh;
+    gap: clamp(1.1rem, 2.4vh, 1.9rem);
   }
-  .label {
-    font-size: clamp(0.7rem, 1.6vw, 1.1rem);
-    letter-spacing: 0.3em;
+  .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.28em;
     text-transform: uppercase;
+    color: var(--gold);
     opacity: 0.85;
   }
   .countdown {
     display: flex;
-    gap: clamp(0.4rem, 1.4vw, 1.2rem);
+    gap: clamp(0.5rem, 1.6vw, 1.4rem);
     flex-wrap: nowrap;
     justify-content: center;
   }
   .unit {
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 14px;
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
     padding: clamp(0.5rem, 1.2vh, 1rem) clamp(0.6rem, 2vw, 1.4rem);
-    min-width: clamp(60px, 11vw, 130px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    min-width: clamp(58px, 10vw, 120px);
   }
   .unit .num {
-    font-size: clamp(1.6rem, 4.5vw, 3.6rem);
-    font-weight: 800;
+    font-size: clamp(1.5rem, 4vw, 3.1rem);
+    font-weight: 400;
     font-variant-numeric: tabular-nums;
     line-height: 1;
-    background: linear-gradient(90deg, #ff8a00, #ffea00, #00f5a0, #00d9f5, #c471f5, #fa71cd);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--gold);
+    text-shadow: 0 0 18px var(--gold-soft);
   }
   .unit .lbl {
-    font-size: clamp(0.55rem, 1vw, 0.8rem);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.5rem, 0.9vw, 0.72rem);
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    opacity: 0.75;
-    margin-top: 0.3rem;
+    letter-spacing: 0.16em;
+    opacity: 0.65;
+    margin-top: 0.35rem;
+  }
+  .ripple {
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+    color: var(--gold);
+    opacity: 0.55;
+    letter-spacing: 0.5em;
   }
   .hero {
-    font-weight: 900;
-    font-size: clamp(1.2rem, 4.2vw, 4rem);
-    line-height: 1.08;
-    letter-spacing: -0.01em;
-    max-width: 1200px;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
-  }
-  .hero .rainbow {
-    background: linear-gradient(90deg,
-      #ff004c, #ff8a00, #ffea00, #00f5a0, #00d9f5, #5e6cff, #c471f5, #fa71cd);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbowShift 30s linear infinite;
-    display: inline-block;
-  }
-  @keyframes rainbowShift {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-  .hero u {
-    text-decoration: underline;
-    text-decoration-thickness: 0.12em;
-    text-underline-offset: 0.12em;
-    text-decoration-color: #ffea00;
-  }
-  .sub {
-    font-size: clamp(0.8rem, 1.4vw, 1.1rem);
-    opacity: 0.85;
-    max-width: 800px;
-    font-style: italic;
-  }
-  .prompt {
-    font-size: clamp(0.85rem, 1.7vw, 1.35rem);
     max-width: 900px;
-    line-height: 1.4;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 14px;
-    padding: clamp(0.7rem, 1.5vh, 1.2rem) clamp(0.9rem, 2vw, 1.6rem);
-    backdrop-filter: blur(8px);
+    font-weight: 400;
+    line-height: 1.32;
   }
-  .prompt .now {
-    font-weight: 900;
-    font-size: 1.2em;
-    color: #ffea00;
-    text-shadow: 0 0 20px rgba(255, 234, 0, 0.6);
+  .hero .line-1 {
+    display: block;
+    font-size: clamp(1.3rem, 3.4vw, 2.6rem);
+    letter-spacing: -0.005em;
   }
-  .prompt em {
-    color: #fa71cd;
+  .hero .line-2 {
+    display: block;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     font-style: italic;
-    font-weight: 600;
+    color: var(--gold);
+    opacity: 0.9;
+    margin-top: 0.4rem;
   }
-  .target-date {
-    font-size: clamp(0.7rem, 1.2vw, 1rem);
-    opacity: 0.7;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+  .hero .accent { color: var(--gold); }
+  .prompt {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+    max-width: 640px;
+    line-height: 1.65;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: clamp(0.9rem, 2vh, 1.5rem) clamp(1.1rem, 2.4vw, 1.9rem);
+    backdrop-filter: blur(10px);
+    color: rgba(246, 236, 217, 0.92);
+  }
+  .prompt strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .footer {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.62rem, 1vw, 0.78rem);
+    opacity: 0.55;
+    letter-spacing: 0.12em;
   }
   /* Portrait phones — stack tighter, shrink hero more */
   @media (max-width: 600px) and (orientation: portrait) {
-    .hero { font-size: clamp(1.1rem, 5.2vw, 2rem); }
-    .prompt { font-size: clamp(0.8rem, 3.4vw, 1.1rem); }
-    .unit { padding: 0.5rem 0.6rem; min-width: 58px; border-radius: 10px; }
-    .unit .num { font-size: clamp(1.3rem, 6.5vw, 2rem); }
+    .hero .line-1 { font-size: clamp(1.1rem, 5.4vw, 1.8rem); }
+    .hero .line-2 { font-size: clamp(0.85rem, 3.6vw, 1.1rem); }
+    .prompt { font-size: clamp(0.78rem, 3.3vw, 0.95rem); }
+    .unit { padding: 0.45rem 0.55rem; min-width: 54px; border-radius: 8px; }
+    .unit .num { font-size: clamp(1.2rem, 6vw, 1.8rem); }
     .countdown { gap: 0.4rem; }
-    .wrap { gap: 1.2vh; padding: 2vh 2vw; }
+    .wrap { gap: 1rem; padding: 2.5vh 4vw; }
   }
 </style>
 </head>
@@ -164,28 +147,29 @@
   <div class="bg-photo"></div>
   <div class="bg-overlay"></div>
   <div class="wrap">
-    <div class="label">Time remaining</div>
+    <div class="eyebrow">what's left of this stretch of water</div>
 
     <div class="countdown" id="countdown">
-      <div class="unit"><div class="num" id="days">--</div><div class="lbl">Days</div></div>
-      <div class="unit"><div class="num" id="hours">--</div><div class="lbl">Hours</div></div>
-      <div class="unit"><div class="num" id="minutes">--</div><div class="lbl">Minutes</div></div>
-      <div class="unit"><div class="num" id="seconds">--</div><div class="lbl">Seconds</div></div>
+      <div class="unit"><div class="num" id="days">--</div><div class="lbl">days</div></div>
+      <div class="unit"><div class="num" id="hours">--</div><div class="lbl">hours</div></div>
+      <div class="unit"><div class="num" id="minutes">--</div><div class="lbl">minutes</div></div>
+      <div class="unit"><div class="num" id="seconds">--</div><div class="lbl">seconds</div></div>
     </div>
 
+    <div class="ripple">〜 〜 〜</div>
+
     <h1 class="hero">
-      <span class="rainbow"><span id="daysInline">--</span> DAYS OF OPEN SPACE TO BREATHE,</span><br>
-      <span class="rainbow">FEWER COMMITMENTS PULLING AT ME.</span><br>
-      <span class="rainbow">A <u>PRIME OPPORTUNITY</u> TO ENJOY IT — AND TO GROW.</span>
+      <span class="line-1">You have <span class="accent"><span id="daysInline">--</span> mornings</span> left that look like this one —</span>
+      <span class="line-2">still water, open hours, nothing owed yet.</span>
     </h1>
 
     <div class="prompt">
-      You're on day <span id="dayIndex">--</span> of <span id="dayTotal">--</span>. However the rest have gone, this one is brand new.<br>
-      <span class="now">SAVOR IT. SHAPE IT.</span><br>
-      Take in what's around you, then spend a little of it moving <em>one thing</em> forward — even something small counts. Either way, you're doing this right.
+      Day <span id="dayIndex">--</span> of <span id="dayTotal">--</span>. However the others went, this one hasn't happened yet.<br><br>
+      Sit in it for a second, the way the swans sit on the lake — going nowhere in particular, and doing just fine. <strong>Notice something.</strong> Let it actually land.<br><br>
+      Then, if there's room, nudge one small thing forward — not because the day demands it, but because a little momentum feels good, and it adds up quieter than you'd think. Either way, today counts. It was never a test to pass.
     </div>
 
-    <div class="target-date">Window closes: 16 July 2026</div>
+    <div class="footer">this window stays open until 16 July 2026</div>
   </div>
 
 <script>
