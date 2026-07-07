@@ -14,11 +14,26 @@
   html, body {
     height: 100%;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #e8e6f0;
+    overflow: hidden;
+  }
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('https://us.123rf.com/450wm/aenseidhe/aenseidhe2001/aenseidhe200100013/140166703-buddha-temple-in-angkor-wat-cambodia-vintage-travel-background-50-s-style-eps10-vector.jpg?ver=6');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
     background-size: 400% 400%;
     animation: gradientShift 45s ease infinite;
-    color: #e8e6f0;
-    overflow: hidden;
+    opacity: 0.72;
   }
   @keyframes gradientShift {
     0%   { background-position: 0% 50%; }
@@ -146,6 +161,8 @@
 </style>
 </head>
 <body>
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
   <div class="wrap">
     <div class="label">Time remaining</div>
 
