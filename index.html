@@ -164,7 +164,7 @@
     </h1>
 
     <div class="prompt">
-      Day <span id="dayIndex">--</span> of <span id="dayTotal">--</span>. However the others went, this one hasn't happened yet.<br><br>
+      This one hasn't happened yet.<br><br>
       Sit in it for a second, the way the swans sit on the lake — going nowhere in particular, and doing just fine. <strong>Notice something.</strong> Let it actually land.<br><br>
       Then, if there's room, nudge one small thing forward — not because the day demands it, but because a little momentum feels good, and it adds up quieter than you'd think. Either way, today counts. It was never a test to pass.
     </div>
@@ -190,14 +190,6 @@
     $('seconds').textContent = pad(secs);
     const inline = document.getElementById('daysInline');
     if (inline) inline.textContent = days;
-
-    // Day index out of fixed 50-day window
-    const totalDays = 50;
-    const dayIdx = Math.min(totalDays, Math.max(1, totalDays - days));
-    const di = document.getElementById('dayIndex');
-    const dt = document.getElementById('dayTotal');
-    if (di) di.textContent = dayIdx;
-    if (dt) dt.textContent = totalDays;
   }
   tick();
   setInterval(tick, 1000);
