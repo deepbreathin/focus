@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Since Reap</title>
+<style>
+  :root {
+    --ink: #2a1f14;
+    --cream: #f6ecd9;
+    --gold: #e3b975;
+    --gold-soft: rgba(227, 185, 117, 0.35);
+    --panel: rgba(38, 28, 18, 0.38);
+    --panel-border: rgba(246, 236, 217, 0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+    color: var(--cream);
+  }
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+  }
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(20,14,8,0.35) 0%, rgba(20,14,8,0.55) 55%, rgba(12,8,5,0.78) 100%);
+  }
+  .wrap {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 3vw;
+    text-align: center;
+    gap: clamp(1.1rem, 2.4vh, 1.9rem);
+  }
+  .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+  .countdown {
+    display: flex;
+    gap: clamp(0.5rem, 1.6vw, 1.4rem);
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  .unit {
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: clamp(0.5rem, 1.2vh, 1rem) clamp(0.6rem, 2vw, 1.4rem);
+    min-width: clamp(58px, 10vw, 120px);
+  }
+  .unit .num {
+    font-size: clamp(1.5rem, 4vw, 3.1rem);
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--gold);
+    text-shadow: 0 0 18px var(--gold-soft);
+  }
+  .unit .lbl {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.5rem, 0.9vw, 0.72rem);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    opacity: 0.65;
+    margin-top: 0.35rem;
+  }
+  .ripple {
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+    color: var(--gold);
+    opacity: 0.55;
+    letter-spacing: 0.5em;
+  }
+  .hero {
+    max-width: 900px;
+    font-weight: 400;
+    line-height: 1.32;
+  }
+  .hero .line-1 {
+    display: block;
+    font-size: clamp(1.3rem, 3.4vw, 2.6rem);
+    letter-spacing: -0.005em;
+  }
+  .hero .line-2 {
+    display: block;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-style: italic;
+    color: var(--gold);
+    opacity: 0.9;
+    margin-top: 0.4rem;
+  }
+  .hero .accent { color: var(--gold); }
+  .prompt {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+    max-width: 680px;
+    line-height: 1.6;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: clamp(1rem, 2.2vh, 1.6rem) clamp(1.2rem, 2.6vw, 2rem);
+    backdrop-filter: blur(10px);
+    color: rgba(246, 236, 217, 0.92);
+    text-align: left;
+  }
+  .prompt-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.62rem, 1vw, 0.75rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 0.7rem;
+  }
+  .prompt ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .prompt li {
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .prompt li::before {
+    content: '〜';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .prompt strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .footer {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.62rem, 1vw, 0.78rem);
+    opacity: 0.55;
+    letter-spacing: 0.12em;
+  }
+  @media (max-width: 600px) and (orientation: portrait) {
+    .hero .line-1 { font-size: clamp(1.1rem, 5.4vw, 1.8rem); }
+    .hero .line-2 { font-size: clamp(0.85rem, 3.6vw, 1.1rem); }
+    .prompt { font-size: clamp(0.78rem, 3.3vw, 0.95rem); }
+    .unit { padding: 0.45rem 0.55rem; min-width: 54px; border-radius: 8px; }
+    .unit .num { font-size: clamp(1.2rem, 6vw, 1.8rem); }
+    .countdown { gap: 0.4rem; }
+    .wrap { gap: 1rem; padding: 4vh 4vw; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
+  <div class="wrap">
+    <div class="eyebrow">time since Reap</div>
+
+    <div class="countdown" id="countdown">
+      <div class="unit"><div class="num" id="days">--</div><div class="lbl">days</div></div>
+      <div class="unit"><div class="num" id="hours">--</div><div class="lbl">hours</div></div>
+      <div class="unit"><div class="num" id="minutes">--</div><div class="lbl">minutes</div></div>
+      <div class="unit"><div class="num" id="seconds">--</div><div class="lbl">seconds</div></div>
+    </div>
+
+    <div class="ripple">〜 〜 〜</div>
+
+    <h1 class="hero">
+      <span class="line-1">Carrying <span class="accent">this</span> forward —</span>
+      <span class="line-2">not as a verdict, just as what's true so far.</span>
+    </h1>
+
+    <div class="prompt">
+      <div class="prompt-title">what you're picking up from</div>
+      <ul>
+        <li>You genuinely enjoy people's company — <strong>as long as they're the right people.</strong> Don't settle for company just to avoid being alone.</li>
+        <li>You're open to love and to a real relationship. That's worth keeping open, not guarding shut.</li>
+        <li>You enjoy strength training. Keep the habit consistent — <strong>build the body</strong>, don't just chase losing weight.</li>
+        <li>You enjoy research and being an advisor — hearing someone's project and finding the angle or perspective they haven't touched on yet. That's a real strength, use it.</li>
+        <li>You have a big heart, but it can tip into excusing the inexcusable — <strong>seeking to understand something isn't the same as it being good for you.</strong> Notice when understanding turns into rationalizing.</li>
+      </ul>
+    </div>
+
+    <div class="footer">counting up from Friday, 7:30 PM GMT</div>
+  </div>
+
+<script>
+  const start = new Date('2026-07-17T19:30:00Z').getTime();
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, '0');
+
+  function tick() {
+    const now = Date.now();
+    let diff = Math.max(0, now - start);
+    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+    const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+    const mins = Math.floor(diff / 60000); diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    $('days').textContent = days;
+    $('hours').textContent = pad(hours);
+    $('minutes').textContent = pad(mins);
+    $('seconds').textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
